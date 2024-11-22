@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Математичні операції</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Математичні операції</h1>
+        <div class="input-container">
+            <input type="number" id="num1" placeholder="Число 1" class="input-field">
+            <input type="number" id="num2" placeholder="Число 2" class="input-field">
+        </div>
+        <div class="buttons-container">
+            <button class="operation-btn" id="add">Додати</button>
+            <button class="operation-btn" id="subtract">Відняти</button>
+            <button class="operation-btn" id="multiply">Множити</button>
+            <button class="operation-btn" id="divide">Ділити</button>
+        </div>
+        <div id="result" class="result"></div>
+    </div>
+    <script>
+        $(document).ready(function () {
+            function calculate(op) {
+                const num1 = parseFloat($('#num1').val());
+                const num2 = parseFloat($('#num2').val());
+                if (isNaN(num1) || isNaN(num2)) {
+                    $('#result').text('Введіть коректні значення.');
+                    return;
+                }
+                let result;
+                switch (op) {
+                    case 'add': result = num1 + num2; break;
+                    case 'subtract': result = num1 - num2; break;
+                    case 'multiply': result = num1 * num2; break;
+                    case 'divide': result = num2 !== 0 ? num1 / num2 : 'Ділити на нуль не можна!'; break;
+                }
+                $('#result').text('Результат: ' + result);
+            }
+
+            $('.operation-btn').click(function () {
+                const op = $(this).attr('id');
+                calculate(op);
+            });
+        });
+    </script>
+</body>
+</html>
